@@ -108,15 +108,37 @@ class Coffee extends Component {
 
 export default Coffee
 ***************
-10.
+*. Passing a props. 
 
+I create another Component => Reviews.js
+that will render for me my reviews. 
 
+1. 
+Since my coffees and reviews are both on the same fetch request ( http://localhost:3001/coffes) I do not need to write a new function in a new component for getting my reviews, but just render them . 
+2. 
+Reviews belongs to my coffees. We could render all them inside Coffee.js ( coffee.reviews ), but instead I pass into Coffee.js => <Reviews/> component that render them.
+3. 
+<Reviews/> passing down (coffee.reviews) as a props : 
 
+ <Reviews reviews={coffee.reviews}/>
+ 
+     where "reviews" now have a value === {coffee.reviews}. 
 
+4. 
+in Reviews.js instead of this.state : 
 
+ this.props.reviews.map(review => {
 
+     this props.reviews passing a value of {coffee.reviews} down to different component.
 
+* Form component to update my coffee img , price and name.
+1.
+Im passing down to FormUpdateCoffee.js the function handleUpdate, as well as props for my name , price and img thats going to be used for setting a defaultValues inside my <form>:
 
+<Form update = {this.handleUpdate}  name={coffee.name} img = {coffee.img} price = {coffee.price}/>
+
+2. 
+Also , to update besides handleUpdate function (wich is the last step of the process) , I will neeed handleChange function. 
 
 
 

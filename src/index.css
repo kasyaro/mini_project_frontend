@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+h3 {
+  color: rgb(105, 105, 130)
+}
+h2 {
+  color: rgb(72, 72, 116)
+}
+h1 {
+  color: rgb(245, 97, 4)
+}
+li {
+  list-style: none;
+  font-style: italic
+}
+.coffees {
+  display: flex;
+  flex-wrap: wrap;
+  
+border: solid gray 1px;
+}
