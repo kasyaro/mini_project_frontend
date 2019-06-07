@@ -7,9 +7,9 @@ class Form extends Component {
         console.log(this.props.update)
         return (
         <>
-          
-            <form id={this.props.id} onSubmit={this.props.update}>
-              <input
+            <form className="form-group"
+            id={this.props.id} onSubmit={this.props.update}>
+              <input className="form-control"
                 onChange={this.props.change}
                 name={'name'}
                 placeholder={'name'}
@@ -17,7 +17,7 @@ class Form extends Component {
                 defaultValue={this.props.name}
                 id={'name'}
                />
-               <input
+               <input className="form-control"
                   onChange={this.props.change}
                  name={'img'}
                  placeholder={'img'}
@@ -25,7 +25,7 @@ class Form extends Component {
                   defaultValue={this.props.img}
                  id={'img'}
               />
-              <input
+              <input className="form-control"
                onChange={this.props.change}
                 name={'price'}
                 placeholder={'price'}

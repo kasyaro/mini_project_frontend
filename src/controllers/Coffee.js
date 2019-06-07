@@ -7,7 +7,7 @@ class Coffee extends Component {
         super(props)
         this.state = {
             coffees: [],
-           
+           isLoaded: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
@@ -19,7 +19,7 @@ class Coffee extends Component {
     getCoffees() {
         fetch('/coffees/')
             .then(response => response.json())
-            .then(jsonedCoffees => this.setState({ coffees: jsonedCoffees }))
+            .then(jsonedCoffees => this.setState({ coffees: jsonedCoffees}))
             .catch(error => console.error(error))
     }
 
@@ -57,32 +57,43 @@ class Coffee extends Component {
 
     render() {
         console.log(this.state)
+        //console.log(coffees.reviews)
         return (
             <>
-                <h1>Welcome to Coffee Time !</h1>
-
+            <header>
+            <h1>
+            <span role="img" aria-label="sheep">☕</span>
+               Welcome to Coffee Time !</h1>
+                </header>
+                <div className='container'>
                 {
                     this.state.coffees.map(coffee => {
                         return (
-                            <div className='coffees' key={coffee.id}>
+                            <div className='card'  key={coffee.id}>
 
-                                <div className='coffeees box'>
-                                <h3>Blend Name: {coffee.name}</h3>
+                                
+                                <h3 className="card-header">Blend Name: {coffee.name}</h3>
+                                <div className="card-body">
                                 <h3>Origin: {coffee.origin}</h3>
-                                <img src={coffee.img} />
-                                <h3>Notes: {coffee.notes}</h3>
-                                <h3>Price: {coffee.price}</h3> 
+                                <img className="card-img-top"src={coffee.img} />
+                                <h3 className="card-text">Notes: {coffee.notes}</h3>
+                                <h3>Price: $ {coffee.price}</h3> 
 
-                             <Reviews reviews={coffee.reviews}/>
 
+<button onClick = {() => this.setState({isLoaded: true})}>UPDATE</button>
+{this.state.isLoaded && 
 <Form update = {this.handleUpdate} change={this.handleChange} id = {coffee.id}
  name={coffee.name} img = {coffee.img} price = {coffee.price}/>
+}
+</div>
+  {/* <Reviews reviews={coffee.reviews}/> */}
                              </div>
                              
-                            </div>
+                            
                         )
                     }) 
                 }
+                </div>
             </>
         )
     }
