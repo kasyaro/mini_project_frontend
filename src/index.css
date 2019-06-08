@@ -15,7 +15,9 @@ code {
     monospace;
 }
 h3 {
-  color: rgb(105, 105, 130)
+  margin: 5px;
+  color: gray;
+  font-family: 'Montserrat', sans-serif;
 }
 h2 {
   color: rgb(72, 72, 116)
@@ -35,6 +37,8 @@ li {
   background-color: papayawhip;
   margin: 20px;
   margin-top: 5px;
+  width: 350px;
+  
 }
 button{
   margin: 10px;
@@ -42,8 +46,10 @@ button{
   border: solid burlywood 5px;
 }
 .container {
-
   background-color: burlywood;
+  display : flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly
 }
 span{
   float: left;
@@ -56,4 +62,11 @@ header{
 input {
  margin: 10px;
 
+}
+form {
+  border: solid beige 3px;
+  padding: 10px;
+  border-radius: 5%;
+  margin: 10px;
+  font-family: 'Montserrat Alternates', sans-serif; 
 }
