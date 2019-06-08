@@ -10,7 +10,7 @@ class FormNew extends Component {
          <>
             <form  onSubmit={this.props.create} >
                <div className="form-group">
-                  <label for="exampleInputTitle">Coffee name</label>
+                  <label htmlFor="exampleInputTitle">Coffee name</label>
                   <input className="form-control"
                      onChange={this.props.change}
                      name={'name'}

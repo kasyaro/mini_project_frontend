@@ -36,9 +36,8 @@ li {
 .card {
   background-color: papayawhip;
   margin: 20px;
-  margin-top: 5px;
   width: 350px;
-  
+  padding: 30px;
 }
 button{
   margin: 10px;

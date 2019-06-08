@@ -14,7 +14,7 @@ class Coffee extends Component {
         this.handleCreateChange = this.handleCreateChange.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
-       //this.handleDelete = this.handleDelete.bind(this)
+       this.handleDelete = this.handleDelete.bind(this)
     }
 
 //*****GET all coffees **********/
@@ -107,27 +107,28 @@ handleAdd (event) {
        .catch(error => console.log(error))
       }
 //**********DELETE */
-// handleDelete (deletedCoffee) {
-
-//     fetch(`/coffees/${deletedCoffee.id}`, {
-//       method: 'DELETE',
-//    headers: {
-//      'Accept': 'application/json, text/plain, */*',
-//      'Content-Type': 'application/json'
-//    }
-//   })
-//    .then(json => {
-//     this.setState(state => {
-//         const coffees = state.coffees.filter((coffee, index) => coffee.id !== deletedCoffee.id)
-//         return {
-//           coffees,
-//         }
-//       }) 
+handleDelete (event) {
+   
+    event.preventDefault()
+    //console.log(event.target.id)
+    let myInfo = {
+        name: this.state.name , origin: this.state.origin , notes: this.state.notes ,img: this.state.img,  price: this.state.price
+    }
+    //console.log(myInfo)
+    fetch(`/coffees/${event.target.id}`, {
+      body: JSON.stringify(myInfo),
+      method: 'DELETE',
+   headers: {
+     'Accept': 'application/json, text/plain, */*',
+     'Content-Type': 'application/json'
+   }
+  })
+   .then(deletedCoffee => {
     
-//    })
-//    .catch(error => console.log(error))
-//   }
-
+     this.getCoffees()
+   })
+   .catch(error => console.log(error))
+  }
 //********************************** */
     render() {
         console.log(this.state)
@@ -163,7 +164,8 @@ handleAdd (event) {
 <Form update = {this.handleUpdate} change={this.handleChange} id = {coffee.id}
  name={coffee.name} img = {coffee.img} price = {coffee.price}/>
 }
-{/* <button onClick={()=> handleDelete(coffee)}> X </button>  */}
+
+ <button  onClick = {() => this.handleDelete() }> X </button>  
 
 </div>
   {/* <Reviews reviews={coffee.reviews}/> */}
