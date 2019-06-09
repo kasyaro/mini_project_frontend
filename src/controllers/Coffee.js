@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
-//import Reviews from './Reviews.js'
+import Reviews from './Reviews.js'
 import Form from './FormUpdateCoffee.js';
 import FormNew from './FormNew.js';
+let baseURL = process.env.REACT_APP_BASEURL
+
+//this logig let you switch b/n heroku url and local host;
+//you need it everu file you use fetch request.
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3000'
+} else {
+  baseURL = 'https://mini-project-coffee.herokuapp.com'
+}
+
+console.log('current base URL:', baseURL)
+
+
 
 class Coffee extends Component {
     constructor(props) {
@@ -23,7 +36,8 @@ class Coffee extends Component {
     }
 
     getCoffees() {
-        fetch('/coffees/')
+      //or syntax may be : fetch( `${baseURL}/coffees/`)
+        fetch(baseURL + '/coffees/')
             .then(response => response.json())
             .then(jsonedCoffees => this.setState({ coffees: jsonedCoffees}))
             .catch(error => console.error(error))
@@ -46,7 +60,7 @@ handleAdd (event) {
     img: this.state.img,
     price: this.state.price 
    }
-    fetch('/coffees/', {
+    fetch(baseURL + '/coffees/', {
       body: JSON.stringify(formInputs),
       method: 'POST',
    headers: {
@@ -92,7 +106,7 @@ handleAdd (event) {
             name: this.state.name , img: this.state.img,  price: this.state.price
         }
         //console.log(myInfo)
-        fetch(`/coffees/${event.target.id}`, {
+        fetch(`${baseURL}/coffees/${event.target.id}`, {
           body: JSON.stringify(myInfo),
           method: 'PUT',
        headers: {
@@ -116,7 +130,7 @@ handleDelete (event) {
         name: this.state.name , origin: this.state.origin , notes: this.state.notes ,img: this.state.img,  price: this.state.price
     }
     //console.log(myInfo)
-    fetch(`/coffees/${event.target.id}`, {
+    fetch(`${baseURL}/coffees/${event.target.id}`, {
       body: JSON.stringify(myInfo),
       method: 'DELETE',
    headers: {
@@ -167,7 +181,7 @@ handleDelete (event) {
 
  <button id={coffee.id} onClick = {(event) => this.handleDelete(event) }> X </button>  
 </div>
-  {/* <Reviews reviews={coffee.reviews}/> */}
+  <Reviews reviews={coffee.reviews}/>
                              </div>    
                         )
                     }) 

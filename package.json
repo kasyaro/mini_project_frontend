@@ -1,7 +1,11 @@
 {
   "name": "mini-client",
   "version": "0.1.0",
-  "proxy": "http://localhost:3000",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
+  "proxy": "https://mini-project-coffee.herokuapp.com",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
