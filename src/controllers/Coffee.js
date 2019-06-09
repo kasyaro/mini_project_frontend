@@ -108,9 +108,10 @@ handleAdd (event) {
       }
 //**********DELETE */
 handleDelete (event) {
-   
+   //event here is the => onClick , and target => the whole html element (button) with function handleDelete ...;
+   //the button needs an id ={coffe.id} to specify what we targetting; we need id for sending this functionality to the backend .
     event.preventDefault()
-    //console.log(event.target.id)
+    console.log(event.currentTarget.id)
     let myInfo = {
         name: this.state.name , origin: this.state.origin , notes: this.state.notes ,img: this.state.img,  price: this.state.price
     }
@@ -146,8 +147,8 @@ handleDelete (event) {
 <h3>Add Coffee here</h3>
 <FormNew create={this.handleAdd} change={this.handleCreateChange}/>
 </section>
-                {
-                    this.state.coffees.map(coffee => {
+           {
+                this.state.coffees.map(coffee => {
                         return (
                             <div className='card'  key={coffee.id}>
  
@@ -158,15 +159,13 @@ handleDelete (event) {
                                 <h3 className="card-text">Notes: {coffee.notes}</h3>
                                 <h3>Price: $ {coffee.price}</h3> 
 
-
 <button onClick = {() => this.setState({isLoaded: true})}>UPDATE</button>
 {this.state.isLoaded && 
 <Form update = {this.handleUpdate} change={this.handleChange} id = {coffee.id}
  name={coffee.name} img = {coffee.img} price = {coffee.price}/>
 }
 
- <button  onClick = {() => this.handleDelete() }> X </button>  
-
+ <button id={coffee.id} onClick = {(event) => this.handleDelete(event) }> X </button>  
 </div>
   {/* <Reviews reviews={coffee.reviews}/> */}
                              </div>    
