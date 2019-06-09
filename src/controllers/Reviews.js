@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 class Reviews extends Component {
+    
     render() {
         return (
             <>
                 {/* <h2>Reviews</h2> */}
-                {
+                { this.props.reviews && 
                     this.props.reviews.map(review => {
                         return (
                             <div className='reviews' key={review.id}>
